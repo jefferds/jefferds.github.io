@@ -1,0 +1,11 @@
+{
+  "hash": "5b23056b4eb78f1144190bc2c1ddecac",
+  "result": {
+    "markdown": "---\ntitle: \"Jefferds\"\n---\n\nThis is a Quarto website.\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n::: {.cell execution_count=1}\n``` {.julia .cell-code}\npwd()\n```\n\n::: {.cell-output .cell-output-display execution_count=2}\n```\n\"C:\\\\Users\\\\jeffe\\\\Documents\\\\001-quarto\\\\jefferds\"\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

@@ -1,0 +1,425 @@
+
+# Exemplo New 100 de Análise de tensões sobre o domente de uma ferrovia.
+
+**Conteúdo:**
+
+\toc
+
+## O problema:
+
+Pretende-se realizar a análise das tensões que ocorrem em um dormente de uma ferrovia com características semelhantes às da [Estrada de Ferro Carajás](https://pt.wikipedia.org/wiki/Estrada_de_Ferro_Caraj%C3%A1s). O dormente é modelado como um sólido prismático de seção retangular como mostrado na Figura \reffig{#TrilhosEDormentes}{1}. Considera-se que o carregamento se dará quando o rodeiro de um vagão com massa total $115\;t$ estiver parado sobre o trilho imediatamente acima dormente, por simplicidade considera-se que toda a carga se apoia no dormente, ainda que esteja claro que o trilho distribuirá esta carga sobre vários dormentes.
+
+\figenv{Figura 1 - Trilhos sobre dormentes.}{/assets/TrilhosEDormentes.png}{width:80%;}{fig-TrilhosEDormentes}
+
+~~~<br>~~~
+
+\figenv{Figura 2 - Vagão sobre trilhos.}{/assets/vagao.png}{width:60%;}{fig-vagao}
+@@fonte
+Fonte: Próprio autor.
+@@
+
+~~~<br>~~~
+
+\figenv{Figura 3 - Carregamento sobre o dormente.}{/assets/cargas_sobre_dormentes.png}{width:60%;}{fig-cargas_sobre_dormentes}
+
+## Solução exemplo - Dormentes de Ferrovias (Ainda dependendo de verificação para correção de possíveis erros!)
+
+_Apresentada por: Aluno da turma 2018 de Engenharia Mecânica da Femec em Marabá-PA**_
+
+Primeiramente, temos que determinar as cargas concentradas que atuam sobre o dormente. Sendo 115000 kg a massa total do vagão, temos que o DCL representando essas cargas é mostrado a seguir:
+
+\figenv{Figura 1 - Diagrama de corpo livre.}{/assets/dormente/dcl1.png}{width:40%;}{dcl1}
+
+Sendo 115000 kg a massa total do vagão, temos que essa massa será distribuída nos quatro rodeiros. Dessa forma podemos calcular a força peso (**W<sub>0**) aplicada em cada trilho.
+
+$$\begin{aligned}
+W_0 &= P =\dfrac{m}{4}*g\\
+m &= 115000\;kg\\
+g &= 9,81\; m/s^2\\
+\end{aligned}$$
+
+- **CALCULO DE $W_0$ e $W_R$:**
+
+```julia:./dormente/wo.jl
+# código em julia
+mt = 115000   # massa (kg)
+g  = 9.81     # gravidade (m/s^2)
+
+W0 = (mt/4)*g # N
+
+println("O peso bruto do vagão W0: $(W0) N")
+```
+
+Com isso, podemos aplicar o somatório das forças na direção y e encontrar o valor da carga concentrada $W_R$, veja:
+
+$$ \sum{F_y} = 0 $$
+$$ W_R = W_0 + W_0 $$
+
+```julia:./dormente/wr.jl
+WR = W0 + W0    # N
+
+println("O valor da carga concentrada WR: $(WR) N")
+```
+
+Encontradas as cargas concentradas atuantes no dormente, partiremos agora para a análise dos esforços internos que o mesmo sofrerá.
+
+Seccionaremos o dormente em 5 seções. Veja a imagem a seguir:
+
+\figenv{Figura 2 - Seções do dormente para cálculo dos esforços internos.}{/assets/dormente/dcl2.png}{width:60%;}{dcl2}
+
+Dessa forma, seccionando o dormente, temos:
+
+- **SETOR I**
+
+\figenv{Figura 2 - Seções no setor I.}{/assets/dormente/setorI.png}{width:32%;}{setorI}
+
+$$\begin{aligned}
+&\sum M = 0 \\
+&W_R = \omega_R \times x \\
+&M_I - W_R*\dfrac{x}{2} = 0 \\
+&M_I(x) = \omega_R \times x \times \dfrac{x}{2} \\
+&M_I(x) = \omega_R \times \dfrac{x^2}{2} \\
+\end{aligned}$$
+
+$$\begin{aligned}
+&\sum F_y = 0 \\
+&W_R = \omega_R \times x \\
+&W_R - V_I = 0 \\
+&V_I(x) = \omega_R \times x \\
+\end{aligned}$$
+
+```julia:./dormente/mivi.jl
+# código em julia
+# FUNÇÕES MOMENTO FLETOR E ESFORÇO CORTANTE EM I
+
+MI(x) = ωR*((x^2)/2);
+VI(x) = ωR*x;
+```
+
+- **SETOR II**
+
+\figenv{Figura 3 - Seções no setor II.}{/assets/dormente/setorII.png}{width:35%;}{setorII}
+
+$$\begin{aligned}
+&\sum M = 0 \\
+&W_R = \omega_R \times x \\
+&W_0 = \omega_0 \times (x - l_1) \\
+&M_{II} - W_R \times \dfrac{x}{2} + W_0 \times \dfrac{x - l_1}{2}= 0 \\
+&M_{II}(x) = \omega_R \times x \times \dfrac{x}{2} \\
+&M_{II}(x) = \omega_R \times \dfrac{x^2}{2} - \omega_0 \times \dfrac{x}{2} \times (x - l_1)^2\\
+\end{aligned}$$
+
+$$\begin{aligned}
+&\sum F_y = 0 \\
+&W_R = \omega_R \times x \\
+&W_0 = \omega_0 \times (x - l_1) \\
+&W_R - V_{II} - W_0 = 0 \\
+&V_{II}(x) = \omega_0 \times (x - l_1) - \omega_R \times x \\ \\
+\end{aligned}$$
+
+```julia:./dormente/miivii.jl
+# código em julia
+# FUNÇÕES MOMENTO FLETOR E ESFORÇO CORTANTE EM II
+
+MII(x) = ωR*((x^2)/2) - ω0*(x/2)*((x - l1)^2);
+VII(x) = ωR*x - ω0*(x - l1);
+```
+- **SETOR III**
+
+\figenv{Figura 4 - Seções no setor III.}{/assets/dormente/setorIII.png}{width:40%;}{setorIII}
+
+$$\begin{aligned}
+&\sum M = 0 \\
+&W_R = \omega_R \times x \\
+&W_0 = \omega_0 \times l_2 \\
+&M_{III} - W_R \times \dfrac{x}{2} + W_0 \times (x - l_1 - \dfrac{l_2}{2})= 0 \\
+&M_{III}(x) = \omega_R \times \dfrac{x^2}{2} - \omega_0 \times l_2 \times (x - l_1 - \dfrac{l_2}{2})\\
+\end{aligned}$$
+
+$$\begin{aligned}
+&\sum F_y = 0 \\
+&W_R = \omega_R \times x \\
+&W_0 = \omega_0 \times l_2 \\
+&W_R - V_{III} - W_0 = 0 \\
+&V_{III}(x) = \omega_0 \times l_2 - \omega_R \times x \\
+\end{aligned}$$
+
+```julia:./dormente/miiiviii.jl
+# código em julia
+# FUNÇÕES MOMENTO FLETOR E ESFORÇO CORTANTE EM III
+
+MIII(x) = ωR*((x^2)/2) - ω0*l2*(x - l1 - (l2/2));
+VIII(x) = ωR*x - ω0*l2;
+```
+
+- **SETOR IV**
+
+\figenv{Figura 4 - Seções no setor IV.}{/assets/dormente/setorIV.png}{width:50%;}{setorIV}
+
+$$\begin{aligned}
+&\sum M = 0 \\
+&W_R = \omega_R \times x \\
+&W_0 = \omega_0 \times l_2 \\
+&W_{01} = \omega_0 \times (x - l_1 - l_2 - l_3) \\
+&M_{IV} - W_R \times \dfrac{x}{2} + W_0 \times (x - l_1 - \dfrac{l_2}{2}) + W_{01} \times \dfrac{1}{2} \times (x - l_1 - l_2 - l_3) = 0 \\
+&M_{IV}(x) = \omega_R \times \dfrac{x^2}{2} - \omega_0 \times l_2 \times (x - l_1 - \dfrac{l_2}{2}) - \omega_0 \times \dfrac{1}{2} \times (x - l_1 - l_2 - l_3)^2\\
+\end{aligned}$$
+
+$$\begin{aligned}
+&\sum F_y = 0 \\
+&W_R = \omega_R \times x \\
+&W_0 = \omega_0 \times l_2 \\
+&W_{01} = \omega_0 \times (x - l_1 - l_2 - l_3) \\
+&W_R - V_{IV} - W_0 - W_{01} = 0 \\
+&V_{IV}(x) = \omega_0 \times l_2 + \omega_0 \times (x - l_1 - l_2 - l_3) - \omega_R \times x \\
+\end{aligned}$$
+
+```julia:./dormente/mivviv.jl
+# código em julia
+# FUNÇÕES MOMENTO FLETOR E ESFORÇO CORTANTE EM IV
+
+MIV(x) = ωR*((x^2)/2) - ω0*l2*(x - l1 - (l2/2)) - ω0*(1/2)*((x - l1 - l2 - l3)^2);
+VIV(x) = ωR*x - ω0*l2 - ω0*(x - l1 - l2 - l3);
+```
+
+- **SETOR V**
+
+\figenv{Figura 5 - Seções no setor V.}{/assets/dormente/setorV.png}{width:60%;}{setorV}
+
+$$\begin{aligned}
+&\sum M = 0 \\
+&W_R = \omega_R \times x \\
+&W_0 = \omega_0 \times l_2 \\
+&W_{01} = \omega_0 \times l_4 \\
+&M_{V} - W_R \times \dfrac{x}{2} + W_0 \times (x - l_1 - \dfrac{l_2}{2}) + W_{01} \times (x - l_1 - l_2 - l_3 - \dfrac{l_4}{2})\\
+&M_{V}(x) = \omega_R \times \dfrac{x^2}{2} - \omega_0 \times l_2 \times (x - l_1 - \dfrac{l_2}{2}) - \omega_0 \times l_4 \times (x - l_1 - l_2 - l_3 - \dfrac{l_4}{2})\\
+\end{aligned}$$
+
+$$\begin{aligned}
+&\sum F_y = 0 \\
+&W_R = \omega_R \times x \\
+&W_0 = \omega_0 \times l_2 \\
+&W_{01} = \omega_0 \times l_4 \\
+&W_R - V_{V} - W_0 - W_{01} = 0 \\
+&V_{V}(x) = \omega_0 \times l_2 + \omega_0 \times l_4  - \omega_R \times x \\
+\end{aligned}$$
+
+```julia:./dormente/mvvv.jl
+# código em julia
+# FUNÇÕES MOMENTO FLETOR E ESFORÇO CORTANTE EM V
+
+MV(x) = ωR*((x^2)/2) - ω0*l2*(x - l1 - (l2/2)) - ω0*l4*(x - l1 - l2 - l3 - (l4/2));
+VV(x) = ωR*x - ω0*l2 - ω0*l4;
+```
+
+Agora definiremos as dimensões do dormente, sendo que utilizaremos o trilho TR 57, veja a figura a seguir:
+
+\figenv{Figura 6 - Seções no setor V.}{/assets/dormente/TR57.png}{width:55%;}{TR57}
+
+Logo, podemos definir as dimensões do dormente em análise, sabendo que a ferrovia usa dormentes de $2\;m$:
+
+$$\begin{aligned}
+&l_2 = l_4 = 0,1397 m \\
+&l_3 = 1,5293 m \\
+&L = 2,4 m \\
+\end{aligned}$$
+
+- **Cálculo dos comprimentos $l_1$ e $l_5$ e dos carregamentos distribuídos:**
+
+```julia:./dormente/dims.jl
+# código em julia
+# DIMENSÕES DO DORMENTE
+
+Lt = 2.4           # m
+l2 = l4 = 0.1397   # m
+l3 = 1.5293        # m
+
+l1 = l5 = (Lt - l2 - l3 - l4)/2 # m
+
+println("l1 = l5 = $(round(l1,digits=3)) m")
+
+# CARREGAMENTOS ω0 e ωR
+
+ω0 = W0/l2  # N/m
+println("ω0 = $(round(ω0/1e3,digits=1)) kN/m")
+
+ωR = WR/Lt  # N/m
+println("ωR = $(round(ωR/1e3,digits=1)) kN/m")
+```
+
+Para gerar os valores do momento fletor e esforço cortante em todo o dormente, vamos criar as funções $M(x)$ e $V(x)$ que retornem os valores para todos os setores:
+
+
+```julia:./dormente/fsmv.jl
+function M(x)
+    if x <= l1
+        return MI(x);
+    elseif x <= l1+l2
+        return MII(x);
+    elseif x <= l1+l2+l3
+        return MIII(x);
+    elseif x <= l1+l2+l3+l4
+        return MIV(x);
+    else
+        return MV(x)
+    end
+end;
+
+
+function V(x)
+    if x<= l1
+        return VI(x);
+    elseif x<= l1+l2
+        return VII(x);
+    elseif x<= l1+l2+l3
+        return VIII(x);
+    elseif x<= l1+l2+l3+l4
+        return VIV(x);
+    else
+        return VV(x)
+    end
+end;
+```
+
+### Diagrama de momento fletor e esforço cortante
+
+#### Gráfico de Momento Fletor
+
+```julia:./dormente/plot_1.jl
+# código julia
+
+using Plots
+
+# GRÁFICO MOMENTO FLETOR
+
+xt = [0, l1, l1+l2, l1+l2+l3, l1+l2+l3+l4, Lt]
+xs = 0.0:0.01:(Lt)
+Plots.plot(xs,M.(xs),
+    w=3,
+    color="blue",
+    label=false,
+    xlabel="x",
+    ylabel="M(x)",
+    labelfontsize=16,
+    tickfontsize=16,
+    formatter=:plain)
+Plots.plot!(xt, M.(xt), 
+    line=(3,:blue,:dash,:sticks),
+    label=false,)
+Plots.plot!(xs,zeros(length(xs)),label=false)
+
+savefig("./assets/dormente/plot_1.svg") # hide
+
+```
+
+\figenv{Figura 7 - Gráfico do momento fletor.}{/assets/dormente/plot_1.svg}{width:75%;}{fig:plot_1}
+
+#### Gráfico Esforço cortante
+
+```julia:./dormente/plot_2.jl
+# código julia
+# GRÁFICO ESFORÇO CORTANTE
+
+using Plots
+xt = [0, l1, l1+l2, l1+l2+l3, l1+l2+l3+l4, Lt]
+xs = 0.0:0.01:(Lt)
+Plots.plot(xs,V.(xs),
+    w=3,
+    color="blue",
+    label=false,
+    xlabel="x",
+    ylabel="V(x)",
+    labelfontsize=16,
+    tickfontsize=16,
+    formatter=:plain)
+Plots.plot!(xt, V.(xt), 
+    line=(3,:blue,:dash,:sticks),
+    label=false,)
+Plots.plot!(xs,zeros(length(xs)),label=false)
+
+savefig("./assets/dormente/plot_2.svg") # hide
+```
+
+\figenv{Figura 8 - Gráfico do esforço cortante fletor.}{/assets/dormente/plot_2.svg}{width:75%;}{fig:plot_1}
+
+### Cálculo de Momento de Inércia
+
+Temos a seguinte representação do dormente, com suas dimensões:
+
+\figenv{Figura 9 - Gráfico do esforço cortante fletor.}{/assets/dormente/dormente.png}{width:75%;}{dormente}
+
+\figenv{Figura 10 - Gráfico do esforço cortante fletor.}{/assets/dormente/dimensoes.png}{width:75%;}{dimensoes}
+
+$$\begin{aligned}
+&I = \dfrac{b*h^3}{12} \\
+\end{aligned}$$
+
+
+```julia:./dormente/inertia.jl
+# código julia
+# CÁLCULO MOMENTO DE INÉRCIA
+
+b = 0.29    # m
+h = 0.2     # m
+
+I = (b*(h^3))/12    # m^4
+
+println("I = $(round(I,digits=3)) m^4")
+```
+
+### Cálculo das Tensões máximas
+
+Temos que a tensão é dada pela seguinte equação:
+
+$$\begin{aligned}
+&\sigma = \dfrac{M*y}{I} \\
+\end{aligned}$$
+
+Como estamos interessados na tensão máxima, a distância da linha neutra até a superfície é dada por y = h/2, com isso temos, que a tensão máxima é dada pela seguinte equação:
+
+$$\begin{aligned}
+&\sigma_{máx} = \dfrac{M}{I}*\dfrac{h}{2} \\
+\end{aligned}$$
+
+```julia:./dormente/sigma.jl
+# código julia
+# CÁLCULO DA TENSÃO MÁXIMA
+
+σ(x) = (M(x)/I)*(h/2)
+
+using Plots
+xt = [0, l1, l1+l2, l1+l2+l3, l1+l2+l3+l4, Lt]
+xs = 0.0:0.01:(Lt)
+Plots.plot(xs,σ.(xs),
+    w=3,
+    color="red",
+    label=false,
+    xlabel="x",
+    ylabel="σ(x)",
+    labelfontsize=16,
+    tickfontsize=16,
+    formatter=:plain)
+Plots.plot!(xt, σ.(xt), 
+    line=(3,:tomato,:dash,:sticks),
+    label=false)
+Plots.plot!(xs,zeros(length(xs)),label=false, color="gray50")
+
+savefig("./assets/dormente/plot_3.svg") # hide
+```
+
+\figenv{Figura 8 - Gráfico do esforço cortante fletor.}{/assets/dormente/plot_3.svg}{width:75%;}{fig:plot_1}
+
+Logo, a tensão máxima se dará no centro do dormente, onde x = Lt/2 e terá o seguinte valor:
+
+```julia:./dormente/sigmamax.jl
+# código julia
+# CÁLCULO DA TENSÃO MÁXIMA NO DORMENTE
+
+σ_máx = σ(Lt/2)/1e6
+
+println("A máxima tensão no dormente é $σ_máx MPa")
+```
+
+**Deixe seu comentário e ajude a melhorar este material.**
+
+{{ addcomments }}

@@ -1,0 +1,26 @@
+project:
+  type: website
+  
+website:
+  title: "Franco J S Silva"
+  navbar:
+    background: primary
+    search: true
+    right:
+      - icon: github
+        href: https://github.com/jefferds
+      - icon: twitter 
+        href: https://twitter.com/FrancoJefferds
+      - icon: linkedin 
+        href: https://www.linkedin.com/in/franco-j-s-silva-15666627/
+
+  page-footer: 
+    left: "Copyright 2022, _Franco Jefferds dos S. Silva_" 
+    right: "código: [MIT license](https://opensource.org/licenses/MIT) e texto e media: [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0)"
+
+format:
+  html:
+    theme: united
+    css: styles.css
+    toc: true
+  
