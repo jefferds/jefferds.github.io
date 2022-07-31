@@ -16,6 +16,9 @@ about:
     - icon: "envelope"
       text: "Email"
       href: mailto:jefferds@gmail.com
+    - icon: "file-earmark-person"
+      text: "Lattes"
+      href: https://lattes.cnpq.br/8180989898990909
 
 sidebar: false
 ---
@@ -36,8 +39,6 @@ Professor do magistério superior, diretor de pesquisa, chefe de divisão, diret
 Engenheiro mecânico sênior na gerência de manutenção de equipamentos de mina | Vale S.A.
 
 Diretor Associado | ITSix Inovação e Tecnologia.
-
-**Currículo Lattes:** [lattes](http://lattes.cnpq.br/0894347931518718)
 
 ## Interesses
 
