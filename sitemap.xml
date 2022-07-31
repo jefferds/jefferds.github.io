@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/jefferds/jefferds.github.io/exemplo_dormente.html</loc>
-    <lastmod>2022-07-31T01:35:50.246Z</lastmod>
+    <loc>https://github.com/jefferds/jefferds.github.io/teaching/solidsmechanics/solidsmechanics1.html</loc>
+    <lastmod>2022-07-31T03:12:12.276Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/jefferds/jefferds.github.io/about.html</loc>
-    <lastmod>2022-07-31T01:35:50.878Z</lastmod>
+    <loc>https://github.com/jefferds/jefferds.github.io/teaching/exemplo_dormente.html</loc>
+    <lastmod>2022-07-31T03:12:13.676Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/jefferds/jefferds.github.io/teaching/ensino.html</loc>
+    <lastmod>2022-07-31T03:12:13.984Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/jefferds/jefferds.github.io/index.html</loc>
-    <lastmod>2022-07-31T01:35:51.206Z</lastmod>
+    <lastmod>2022-07-31T03:12:14.344Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/jefferds/jefferds.github.io/personal/about.html</loc>
+    <lastmod>2022-07-31T03:12:14.644Z</lastmod>
   </url>
 </urlset>
