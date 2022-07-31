@@ -16,7 +16,7 @@ website:
 
   page-footer: 
     left: "Copyright 2022, _Franco Jefferds dos S. Silva_" 
-    right: "código: [MIT license](https://opensource.org/licenses/MIT) e texto e media: [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0)"
+    right: "[código: MIT license](https://opensource.org/licenses/MIT) e [texto e media: CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0)"
 
 format:
   html:
