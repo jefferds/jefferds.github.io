@@ -3,10 +3,15 @@ project:
   
 website:
   title: "Franco J S Silva"
+
   navbar:
     background: primary
     search: true
     right:
+      - text: "About"
+        file: "personal/about.qmd"
+      # - sidebar:teaching
+
       - icon: github
         href: https://github.com/jefferds
       - icon: twitter 
@@ -14,13 +19,22 @@ website:
       - icon: linkedin 
         href: https://www.linkedin.com/in/franco-j-s-silva-15666627/
 
-  page-footer: 
-    left: "Copyright 2022, _Franco Jefferds dos S. Silva_" 
-    right: "[código: MIT license](https://opensource.org/licenses/MIT) e [texto e media: CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0)"
+  sidebar:
+
+    - id: teaching
+      title: "Ensino"
+      style: "docked"
+      background: light
+      collapse-level: 2
+      contents: 
+        - "teaching/solidsmechanics/solidsmechanics1.qmd"
+
+
+page-footer: 
+  center: "_Copyright 2022, Franco Jefferds dos S. Silva_ -- O código está sob [MIT license](https://opensource.org/licenses/MIT) e o texto e medias estão sob [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0)"
 
 format:
   html:
     theme: united
     css: styles.css
     toc: true
-  

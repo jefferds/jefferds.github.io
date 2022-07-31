@@ -2,7 +2,7 @@
 title: "Franco J S Silva"
 about:
   template: trestles
-  image: "personal/img/francoreal.jpg"
+  image: "img/francoreal.jpg"
   links:
     - icon: github
       text: "Github"
