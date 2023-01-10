@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,31 +133,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Franco J S Silva</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../personal/about.html">About</a>
+    <a class="nav-link" href="../personal/about.html">
+ <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/jefferds"><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/FrancoJefferds"><i class="bi bi-twitter" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.linkedin.com/in/franco-j-s-silva-15666627/"><i class="bi bi-linkedin" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -161,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <h1 class="quarto-secondary-nav-title"></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -184,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -240,8 +248,7 @@ g &amp;= 9,81\; m/s^2\\
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"O peso bruto do vagão W0: </span><span class="sc">$</span>(W0)<span class="st"> N"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Com isso, podemos aplicar o somatório das forças na direção y e encontrar o valor da carga concentrada <span class="math inline">\(W_R\)</span>, veja:</p>
-<p><span class="math display">\[ \sum{F_y} = 0 \]</span></p>
-<p><span class="math display">\[ W_R = W_0 + W_0 \]</span></p>
+<p><span class="math display">\[ \sum{F_y} = 0 \]</span> <span class="math display">\[ W_R = W_0 + W_0 \]</span></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode julia:./dormente/wr.jl code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>WR <span class="op">=</span> W0 <span class="op">+</span> W0    <span class="co"># N</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"O valor da carga concentrada WR: </span><span class="sc">$</span>(WR)<span class="st"> N"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -253,17 +260,13 @@ g &amp;= 9,81\; m/s^2\\
 <li><strong>SETOR I</strong></li>
 </ul>
 <p>\figenv{Figura 2 - Seções no setor I.}{/assets/dormente/setorI.png}{width:32%;}{setorI}</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-
+<p><span class="math display">\[\begin{aligned}
 &amp;\sum M = 0 \\
 &amp;W_R = \omega_R \times x \\
 &amp;M_I - W_R*\dfrac{x}{2} = 0 \\
 &amp;M_I(x) = \omega_R \times x \times \dfrac{x}{2} \\
 &amp;M_I(x) = \omega_R \times \dfrac{x^2}{2} \\
-\end{aligned}\]</span>
-<p>$$</p>
+\end{aligned}\]</span></p>
 <p><span class="math display">\[\begin{aligned}
 &amp;\sum F_y = 0 \\
 &amp;W_R = \omega_R \times x \\
@@ -279,18 +282,14 @@ $$
 <li><strong>SETOR II</strong></li>
 </ul>
 <p>\figenv{Figura 3 - Seções no setor II.}{/assets/dormente/setorII.png}{width:35%;}{setorII}</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-
+<p><span class="math display">\[\begin{aligned}
 &amp;\sum M = 0 \\
 &amp;W_R = \omega_R \times x \\
 &amp;W_0 = \omega_0 \times (x - l_1) \\
 &amp;M_{II} - W_R \times \dfrac{x}{2} + W_0 \times \dfrac{x - l_1}{2}= 0 \\
 &amp;M_{II}(x) = \omega_R \times x \times \dfrac{x}{2} \\
 &amp;M_{II}(x) = \omega_R \times \dfrac{x^2}{2} - \omega_0 \times \dfrac{x}{2} \times (x - l_1)^2\\
-\end{aligned}\]</span>
-<p>$$</p>
+\end{aligned}\]</span></p>
 <p><span class="math display">\[\begin{aligned}
 &amp;\sum F_y = 0 \\
 &amp;W_R = \omega_R \times x \\
@@ -307,17 +306,13 @@ $$
 <li><strong>SETOR III</strong></li>
 </ul>
 <p>\figenv{Figura 4 - Seções no setor III.}{/assets/dormente/setorIII.png}{width:40%;}{setorIII}</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-
+<p><span class="math display">\[\begin{aligned}
 &amp;\sum M = 0 \\
 &amp;W_R = \omega_R \times x \\
 &amp;W_0 = \omega_0 \times l_2 \\
 &amp;M_{III} - W_R \times \dfrac{x}{2} + W_0 \times (x - l_1 - \dfrac{l_2}{2})= 0 \\
 &amp;M_{III}(x) = \omega_R \times \dfrac{x^2}{2} - \omega_0 \times l_2 \times (x - l_1 - \dfrac{l_2}{2})\\
-\end{aligned}\]</span>
-<p>$$</p>
+\end{aligned}\]</span></p>
 <p><span class="math display">\[\begin{aligned}
 &amp;\sum F_y = 0 \\
 &amp;W_R = \omega_R \times x \\
@@ -334,18 +329,14 @@ $$
 <li><strong>SETOR IV</strong></li>
 </ul>
 <p>\figenv{Figura 4 - Seções no setor IV.}{/assets/dormente/setorIV.png}{width:50%;}{setorIV}</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-
+<p><span class="math display">\[\begin{aligned}
 &amp;\sum M = 0 \\
 &amp;W_R = \omega_R \times x \\
 &amp;W_0 = \omega_0 \times l_2 \\
 &amp;W_{01} = \omega_0 \times (x - l_1 - l_2 - l_3) \\
 &amp;M_{IV} - W_R \times \dfrac{x}{2} + W_0 \times (x - l_1 - \dfrac{l_2}{2}) + W_{01} \times \dfrac{1}{2} \times (x - l_1 - l_2 - l_3) = 0 \\
 &amp;M_{IV}(x) = \omega_R \times \dfrac{x^2}{2} - \omega_0 \times l_2 \times (x - l_1 - \dfrac{l_2}{2}) - \omega_0 \times \dfrac{1}{2} \times (x - l_1 - l_2 - l_3)^2\\
-\end{aligned}\]</span>
-<p>$$</p>
+\end{aligned}\]</span></p>
 <p><span class="math display">\[\begin{aligned}
 &amp;\sum F_y = 0 \\
 &amp;W_R = \omega_R \times x \\
@@ -363,18 +354,14 @@ $$
 <li><strong>SETOR V</strong></li>
 </ul>
 <p>\figenv{Figura 5 - Seções no setor V.}{/assets/dormente/setorV.png}{width:60%;}{setorV}</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-
+<p><span class="math display">\[\begin{aligned}
 &amp;\sum M = 0 \\
 &amp;W_R = \omega_R \times x \\
 &amp;W_0 = \omega_0 \times l_2 \\
 &amp;W_{01} = \omega_0 \times l_4 \\
 &amp;M_{V} - W_R \times \dfrac{x}{2} + W_0 \times (x - l_1 - \dfrac{l_2}{2}) + W_{01} \times (x - l_1 - l_2 - l_3 - \dfrac{l_4}{2})\\
 &amp;M_{V}(x) = \omega_R \times \dfrac{x^2}{2} - \omega_0 \times l_2 \times (x - l_1 - \dfrac{l_2}{2}) - \omega_0 \times l_4 \times (x - l_1 - l_2 - l_3 - \dfrac{l_4}{2})\\
-\end{aligned}\]</span>
-<p>$$</p>
+\end{aligned}\]</span></p>
 <p><span class="math display">\[\begin{aligned}
 &amp;\sum F_y = 0 \\
 &amp;W_R = \omega_R \times x \\
@@ -391,15 +378,11 @@ $$
 <p>Agora definiremos as dimensões do dormente, sendo que utilizaremos o trilho TR 57, veja a figura a seguir:</p>
 <p>\figenv{Figura 6 - Seções no setor V.}{/assets/dormente/TR57.png}{width:55%;}{TR57}</p>
 <p>Logo, podemos definir as dimensões do dormente em análise, sabendo que a ferrovia usa dormentes de <span class="math inline">\(2\;m\)</span>:</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-
+<p><span class="math display">\[\begin{aligned}
 &amp;l_2 = l_4 = 0,1397 m \\
 &amp;l_3 = 1,5293 m \\
 &amp;L = 2,4 m \\
-\end{aligned}\]</span>
-<p>$$</p>
+\end{aligned}\]</span></p>
 <ul>
 <li><strong>Cálculo dos comprimentos <span class="math inline">\(l_1\)</span> e <span class="math inline">\(l_5\)</span> e dos carregamentos distribuídos:</strong></li>
 </ul>
@@ -526,13 +509,9 @@ $$
 <section id="cálculo-das-tensões-máximas" class="level3">
 <h3 class="anchored" data-anchor-id="cálculo-das-tensões-máximas">Cálculo das Tensões máximas</h3>
 <p>Temos que a tensão é dada pela seguinte equação:</p>
-$$
-<span class="math display">\[\begin{aligned}
-
-
+<p><span class="math display">\[\begin{aligned}
 &amp;\sigma = \dfrac{M*y}{I} \\
-\end{aligned}\]</span>
-<p>$$</p>
+\end{aligned}\]</span></p>
 <p>Como estamos interessados na tensão máxima, a distância da linha neutra até a superfície é dada por y = h/2, com isso temos, que a tensão máxima é dada pela seguinte equação:</p>
 <p><span class="math display">\[\begin{aligned}
 &amp;\sigma_{máx} = \dfrac{M}{I}*\dfrac{h}{2} \\
@@ -618,7 +597,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -646,31 +642,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
